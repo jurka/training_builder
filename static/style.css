@@ -1,0 +1,41 @@
+body            { font-family: sans-serif; }
+a, h1, h2       { color: #377BA8; }
+h1, h2          { font-family: 'Monaco', 'Georgia', serif; margin: 0; }
+h2              { font-size: 1.2em; }
+table           { border-collapse: collapse; border-spacing: 0; }
+
+.page           { margin: 0 auto; background: white; }
+.entries        { list-style: none; margin: 0; padding: 0; }
+.entries li     { margin: 0.8em 1.2em; }
+.entries li h2  { margin-left: -1em; }
+.add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
+.add-entry dl   { font-weight: bold; }
+.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
+                  margin-bottom: 1em; background: #fafafa; }
+.flash          { background: #CEE5F5; padding: 0.5em;
+                  border: 1px solid #AACBE2; }
+.error          { background: #F0D6D6; padding: 0.5em; }
+
+h2				{ padding-top: 2em;}
+.form           { border: 1px solid #ccc; padding: 10px 20px;}
+.action         { text-align: right; }
+.exes td        { border-bottom: 1px solid #999; padding: 1px 4px; }
+.exes td.ui-state-highlight        { border-bottom: 1px solid red; padding: 1px 4px; height: 20px;}
+tr:nth-child(odd)     { background-color:#eee; }
+tr:nth-child(even)    { background-color:#fff; }
+.small          { font-size: 0.82em; }
+.menu           { display: block; width: 100%;}
+.menu li        { display: inline; padding: 4px 6px; list-style: none; }
+progress        { width: 20%; height: 10px; }
+#task_name      { width: 40%; padding: 3px 0;}
+.ui-autocomplete 	  { font-size: 0.8em; }
+.empty_spacer   { height: 500px; }
+th              { padding: 1px 4px; }
+.hidden 		{ display: none; }
+.ui-widget      { font-size: 1em; }
+button.ui-button-icon-only { width: 2em; }
+
+/*#globalLoader { font-size: 14px; font-weight: bold; left: 50%; line-height: 18px; position: fixed; top: 0; z-index: 5000; }
+#globalLoader .inner { background: url("/static/ajax-loader-squares.gif") no-repeat scroll 20px 9px #43609C; color: #FFFFFF; left: -50%; padding: 5px 20px 5px 70px; position: relative; }*/
+
+

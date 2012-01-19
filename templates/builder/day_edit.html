@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1><a href="/pr/programs/#{{day.pr_id.id}}" title="Назад к списку программок">{{ day.pr_id.title}}</a></h1>
+    
+
+<h2>неделя {{day.week_number}} &mdash; день {{day.day_number}} &mdash; Упражнения:</h2>
+    <table class="sorted">
+        <thead>
+            <th>название уражнения</th>
+            <th>повторы</th>
+            <th>разогрев</th>
+            <th>супер-сет</th>
+            <th>действия</th>
+        </thead>
+        {% for task in day.get_tasks %}
+            <tr class="item" id="task_id_{{ task.id }}">
+                <td>{{ task.excercise_type.title }}</td>
+                <td>{% autoescape off %}{{ task.reps }}{% endautoescape %}</td>
+                <td align="center">
+                    {% if task.is_light_weight %}
+                        <img src="/static/check_mark.png" width="24" height="24"/>
+                    {% else %}
+                        <img src="/static/remove.png"  width="24" height="24"/>
+                    {% endif %}
+                </td>
+                <td>
+                    <span id="toolbar" class="ui-widget-header ui-corner-all">
+                        <button class="minus">&lt;</button>
+                        <span class="super_set">{{ task.super_set_number }}</span>
+                        <button class="plus">&gt;</button>
+                    </span>
+                </td>
+                <td align="center">
+                    <a href="/pr/day/{{ day.id }}/task/{{ task.id }}/detele/" class="delete" ><img title="удалить" src="/static/delete.png" width="24" height="24"/></a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td>Список пока пуст</td></tr>
+        {% endfor %}
+    </table>
+<button id="save_order">Обновить порядок</button><progress class="loader hidden">processing...</progress>
+
+<h2>Добавить упражнение:</h2>
+
+<div class="form">
+    <form id="add_task" action="/pr/add/{{ day.id }}/task/" method="post">
+        <label for="task_name">Название:</label> <input type="text" id="task_name" name="task_name" />
+        id: <input type="text" id="task_id" name="task_id" readonly="readonly" size="1"/><br />
+        <label for="reps">Повторы:</label> <input type="text" name="reps" id="reps"><br />
+        <input type="checkbox" name="warmup" value="False" id="warmup"/><label for="warmup">разогревчик?</label>
+        <label for="order">Порядок:</label><input type="text" name="order" id="order" size="1"/> <br />
+        <label for="super_set">Номер супер сета<small></small>:</label><input type="text" name="super_set" id="super_set" size="1"/> <br />
+
+        <button id="add">добавить</button>
+    </form>
+</div>
+<div class="empty_spacer">
+</div>
+{% endblock %}

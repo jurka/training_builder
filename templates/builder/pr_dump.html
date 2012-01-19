@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>{{ program.id }}. {{ program.title }}</h1>
+    <textarea rows="50" cols="120">
+        <ul class="training">
+            <span class="exercises-head">Упражнение</span>
+            <span class="sets-head">Подходы</span>
+        </ul>
+        {% for day in program.get_days%}
+        <h4> День {{day.day_number}}</h4>
+        <ul class="training">
+            {% for task in day.get_tasks %}
+            {% spaceless %}
+            <li{% if task.is_super_set %}{% if task.set_num %} class="set1"{% else %} class="set2"{% endif %}{% endif %}>
+                <a class="exercises tip" xtitle="{{ task.excercise_type.description }}" ximg="{{ task.excercise_type.image_link }}" href="{{ task.excercise_type.link_to }}">{{task.excercise_type.title}}</a> <span class="sets">{{ task.reps }}</span>
+            </li>
+            {% endspaceless %}
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </textarea>
+{% endblock %}

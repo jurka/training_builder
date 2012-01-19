@@ -1,0 +1,24 @@
+<!doctype html>
+
+<head>
+    <title>Programe builder</title>
+    <link href="/static/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="page">
+        <ul class="menu">
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/pr/programs">Тренировки</a></li>
+            <li><a href="/pr/load_db">Загрузить из CSV</a></li>
+        </ul>
+        {% block body %}{% endblock %}
+    </div>
+
+    <script src="/static/jquery-1.7.1.min.js"></script>
+    <script src="/static/jquery-ui-1.8.16.custom.min.js"></script>
+    <script src="/static/all.js" type="text/javascript" charset="utf-8"></script>
+
+</body>

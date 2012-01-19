@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Список программок с днями</h1>
+    <ul>
+        {% for program in programs %}
+            <li>{{ program }} <a class="small" href="/pr/build_dump/{{program.id}}">dump</a></li>
+            <ul>
+                {% for day in program.get_days %}
+                    <li>{{ day }}
+                        <a class="small" href="/pr/day/{{day.id}}">edit</a></li>
+                {% empty %}
+                    <li> Добавь день в <a href="/admin/builder/day/">админке</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}
