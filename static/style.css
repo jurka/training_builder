@@ -24,8 +24,9 @@ h2				{ padding-top: 2em;}
 tr:nth-child(odd)     { background-color:#eee; }
 tr:nth-child(even)    { background-color:#fff; }
 .small          { font-size: 0.82em; }
-.menu           { display: block; width: 100%;}
+.menu           { display: block; width: 100%; margin: 0; padding: 0;}
 .menu li        { display: inline; padding: 4px 6px; list-style: none; }
+.menu .right	{ float: right;}
 progress        { width: 20%; height: 10px; }
 #task_name      { width: 40%; padding: 3px 0;}
 .ui-autocomplete 	  { font-size: 0.8em; }
@@ -34,6 +35,14 @@ th              { padding: 1px 4px; }
 .hidden 		{ display: none; }
 .ui-widget      { font-size: 1em; }
 button.ui-button-icon-only { width: 2em; }
+
+.dark			{ background-color: #CCC;}
+.login			{ margin: 100px auto; width: 280px; background-color: #FFF; padding: 0 0 10px;}
+.login h1		{ background-color: #678; color: #FFF; padding: 10px; font-size: 1em;}
+.login form		{ margin: 20px 10px;}
+.login input	{ margin: 2px 0px;}
+.login input[type=submit] { border: 1px solid #999; background-color:#FFA; margin-top: 10px;}
+.login input[type=submit]:hover { cursor: pointer; }
 
 /*#globalLoader { font-size: 14px; font-weight: bold; left: 50%; line-height: 18px; position: fixed; top: 0; z-index: 5000; }
 #globalLoader .inner { background: url("/static/ajax-loader-squares.gif") no-repeat scroll 20px 9px #43609C; color: #FFFFFF; left: -50%; padding: 5px 20px 5px 70px; position: relative; }*/

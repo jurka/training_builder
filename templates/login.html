@@ -6,17 +6,17 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 
-<body>
+<body class="dark">
 
-    <div class="page">
-        <ul class="menu">
-            <li><a href="/admin">Admin</a></li>
-            <li><a href="/pr/programs">Тренировки</a></li>
-            <li><a href="/pr/load_db">Загрузить из CSV</a></li>
-            <li class="right"><a href="/logout">Log out</a></li>
-        </ul>
-        {% block body %}{% endblock %}
-    </div>
+    <div class="page login">
+        <h1>Login</h1>
+
+		<form action="/login" method="POST" class="login_form">
+			<input name="username" type="text"/> <br />
+			<input name="password" type="password"/> <br />
+			<input type="submit" value="Log in" />
+		</form>
+	</div>
 
     <script src="/static/jquery-1.7.1.min.js"></script>
     <script src="/static/jquery-ui-1.8.16.custom.min.js"></script>

@@ -9,6 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'views.home', name='home'),
+    url(r'^login', 'views.login_page', name='login_page'),
+    url(r'^logout', 'views.logout_page', name='logout_page'),
     url(r'^pr/', include('builder.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

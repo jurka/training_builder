@@ -8,27 +8,28 @@ from time import sleep
 
 from models import Program, Exercise, Day, Task
 
-@login_required(login_url='/admin/login')
+
+@login_required(login_url='/login')
 def programs_list(request):
     programs = Program.objects.all()
     return render_to_response('builder/programs.html', locals())
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def edit_day(self, day_id):
     logging.error('edit_day')
     day = Day.objects.get(id=day_id)
     return render_to_response('builder/day_edit.html', locals())
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def suggest(self):
     data = Exercise.objects.filter(title__contains=self.GET['term']).all()
     data = map(lambda x: {'label': x.title, 'id': x.id, 'value': x.title}, data)
     return HttpResponse(content=json_encode(data), mimetype='application/x-javascript')
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def task_add(self, day_id):
     logging.error('task_add')
     logging.error(self.POST)
@@ -47,7 +48,7 @@ def task_add(self, day_id):
 
     day = Day.objects.get(id=int(day_id))
     if params['order'] == '':
-        params.update({'order':str(len(day.get_tasks()))})
+        params.update({'order': str(len(day.get_tasks()))})
 
     logging.error(params)
 
@@ -63,7 +64,7 @@ def task_add(self, day_id):
     return redirect('/pr/day/' + str(int(day_id)), day_id=int(day_id))
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def load_csv(self):
     reader = csv.reader(open('./base_ex.csv', 'rb'))
 
@@ -93,7 +94,7 @@ def load_csv(self):
     pass
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def task_delete(self, day_id, task_id):
     logging.error('task_delete')
     task = Task.objects.get(id=task_id)
@@ -103,7 +104,7 @@ def task_delete(self, day_id, task_id):
     return redirect('/pr/day/' + str(int(day_id)), day_id=int(day_id))
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def task_reorder(request):
     logging.error(request.POST)
     order_f = request.POST.get(u'order')
@@ -125,7 +126,7 @@ def task_reorder(request):
     return HttpResponse(content=json_encode({'res': 'OK'}), mimetype='application/x-javascript')
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def task_ss_save(request):
     logging.error(request.POST)
     number = request.POST.get(u'number')
@@ -142,8 +143,7 @@ def task_ss_save(request):
     return HttpResponse(content=json_encode({'res': 'OK'}), mimetype='application/x-javascript')
 
 
-@login_required(login_url='/admin/login')
+@login_required(login_url='/login')
 def build(request, pr_id):
     program = Program.objects.get(id=int(pr_id))
     return render_to_response('builder/pr_dump.html', locals())
-
