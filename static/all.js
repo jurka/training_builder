@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
   $('#task_name').autocomplete({
-      source: '/pr/suggest/exercise/',
-      // source: ["c++", "java", "php", "coldfusion", "coldfusion2", "coldfusion3", "javascript", "asp", "ruby", "жим"],    minLength: 2,
+      source: '/pr/suggest/exercise/?for=' + $('#for_women').val(),
       select: function(event, ui) {
           $('#task_id').val( ui.item.id );
           $('#task_name').val( ui.item.label );
@@ -61,9 +60,9 @@ $(document).ready(function(){
   $('.plus').click(function(e){
       e.preventDefault();
       var ss = $(this).parents('#toolbar').find('.super_set');
-      var s_num = parseInt($(ss).html()) + 1;
+      var s_num = parseInt($(ss).html(), 10) + 1;
       $(ss).html(s_num);
-      var id = parseInt($(ss).parents('tr').attr('id').replace("task_id_", ""));
+      var id = parseInt($(ss).parents('tr').attr('id').replace("task_id_", ""), 10);
       update_ss_number(id, s_num);
   }).button({
     icons: {
@@ -75,12 +74,12 @@ $(document).ready(function(){
   $('.minus').click(function(e){
       e.preventDefault();
       var ss = $(this).parents('#toolbar').find('.super_set');
-      var s_num = parseInt($(ss).html()) - 1;
+      var s_num = parseInt($(ss).html(), 10) - 1;
       if (s_num < 0) {
           s_num = 0;
       }
       $(ss).html(s_num);
-      var id = parseInt($(ss).parents('tr').attr('id').replace("task_id_", ""));
+      var id = parseInt($(ss).parents('tr').attr('id').replace("task_id_", ""), 10);
       update_ss_number(id, s_num);
   }).button({
         icons: {
@@ -88,9 +87,6 @@ $(document).ready(function(){
         },
         text: false
     });
-  
-  
-  
 
 
 window.globalLoader = {

@@ -2,7 +2,7 @@
 {% block body %}
 
 <h1><a href="/pr/programs/#{{day.pr_id.id}}" title="Назад к списку программок">{{ day.pr_id.title}}</a></h1>
-    
+<input type="hidden" value="{{day.pr_id.for_women}}" name="for_women" id="for_women"/>
 
 <h2>неделя {{day.week_number}} &mdash; день {{day.day_number}} &mdash; Упражнения:</h2>
     <table class="sorted">

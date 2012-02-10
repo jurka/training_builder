@@ -24,7 +24,12 @@ def edit_day(self, day_id):
 
 @login_required(login_url='/login')
 def suggest(self):
-    data = Exercise.objects.filter(title__contains=self.GET['term']).all()
+    for_women = (self.GET[u'for'] == u'True')
+    data = Exercise.objects.filter(title__icontains=self.GET['term'].lower()).all()
+    print("found %s records" % len(data))
+    for i in data:
+        print (repr(i) + ' - ' + repr(i.for_women))
+    data = filter(lambda x: x.for_women == for_women, data)
     data = map(lambda x: {'label': x.title, 'id': x.id, 'value': x.title}, data)
     return HttpResponse(content=json_encode(data), mimetype='application/x-javascript')
 
@@ -66,29 +71,39 @@ def task_add(self, day_id):
 
 @login_required(login_url='/login')
 def load_csv(self):
-    reader = csv.reader(open('./base_ex.csv', 'rb'))
+    # import codecs
+    # reader = codecs.getreader('utf-8')
+    reader = csv.reader(open('./data/base_ex_women.csv', 'r'))
 
-    i = True
-    for row in reader:
-        if i:
-            i = False
-            continue
+    print(repr(reader))
+    print(dir(reader))
 
-        logging.error(row)
+    try:
+        i = True
+        while True:
+            row = reader.next()
+            row = [unicode(s, "utf-8") for s in row]
+        # for row in reader.next():
+            if i:
+                i = False
+                continue
+            logging.error(row)
 
-        c = Exercise()
-        row = map(str, row)
-        row = row + ([''] * 5)
+            c = Exercise()
+            # row = map(str, row)
+            row = row + ([''] * 5)
+            logging.error(row)
 
-        logging.error(row)
+            c.title = row[0]
+            c.description = row[1]
+            c.image_link = row[2]
+            c.link_to = row[3]
+            c.video_link = row[4]
+            c.for_women = True
 
-        c.title = row[0]
-        c.description = row[1]
-        c.image_link = row[2]
-        c.link_to = row[3]
-        c.video_link = row[4]
-
-        c.save()
+            c.save()
+    except Exception, e:
+        pass
 
     return render_to_response('builder/load.html', locals())
     pass

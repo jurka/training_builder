@@ -8,6 +8,7 @@ class Exercise(models.Model):
     image_link = models.CharField(max_length=255, blank=True, null=True)
     link_to = models.CharField(max_length=255, blank=True, null=True)
     video_link = models.CharField(max_length=255, blank=True, null=True)
+    for_women = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.title
@@ -16,6 +17,7 @@ class Exercise(models.Model):
 class Program(models.Model):
     number = models.IntegerField()
     title = models.CharField(max_length=100, blank=True, null=True)
+    for_women = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s (id:%s)" % (self.title, self.number)
