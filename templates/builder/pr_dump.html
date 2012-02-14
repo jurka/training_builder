@@ -12,7 +12,7 @@
             {% for task in day.get_tasks %}
             {% spaceless %}
             <li{% if task.is_super_set %}{% if task.set_num %} class="set1"{% else %} class="set2"{% endif %}{% endif %}>
-                <a class="exercises tip" xtitle="{{ task.excercise_type.description }}" ximg="{{ task.excercise_type.image_link }}" href="{{ task.excercise_type.link_to }}">{{task.excercise_type.title}}</a> <span class="sets">{{ task.reps }}</span>
+                <a class="exercises tip" xtitle="{{ task.excercise_type.description }}" ximg="{{ task.excercise_type.image_link }}" href="{{ task.excercise_type.link_to }}">{{task.excercise_type.title}}{%if task.is_light_weight%} *{%endif%}</a> <span class="sets">{{ task.reps }}</span>
             </li>
             {% endspaceless %}
             {% endfor %}
