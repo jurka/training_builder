@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 import csv
 from django.http import HttpResponse
@@ -25,8 +26,10 @@ def edit_day(self, day_id):
 @login_required(login_url='/login')
 def suggest(self):
     for_women = (self.GET[u'for'] == u'True')
-    data = Exercise.objects.filter(title__icontains=self.GET['term'].lower()).all()
-    print("found %s records" % len(data))
+    data = Exercise.objects.all()
+
+    data = filter(lambda x: self.GET['term'].lower() in x.title.lower(), data)
+
     for i in data:
         print (repr(i) + ' - ' + repr(i.for_women))
     data = filter(lambda x: x.for_women == for_women, data)
